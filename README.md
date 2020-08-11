@@ -59,17 +59,11 @@ After build, do something like:
 ./PrintApp print -m "Error!" --error
 ```
 
-<!-- nuget.org -->
-
 [nuget]: https://www.nuget.org/packages/CliHelper
-
-<!-- Github -->
 
 [releases]: https://github.com/lavaleak/CliHelper/releases
 [changelog]: CHANGELOG.md
 [license]: LICENSE
-
-<!-- Badge URLs -->
 
 [nuget-badge]: https://img.shields.io/nuget/v/CliHelper
 [license-badge]: https://img.shields.io/github/license/lavaleak/CliHelper
