@@ -1,24 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <PackageId>CliHelper</PackageId>
     <Title>CliHelper</Title>
     <AssemblyName>CliHelper</AssemblyName>
-    <RootNamespace>LavaLeak.CliHelper</RootNamespace>
+    <RootNamespace>CliHelper</RootNamespace>
     <Authors>Bruno Araujo</Authors>
     <Company>Lava Leak</Company>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>A C# library to help build console applications (command line interface).</Description>
-    <PackageTags>lavaleak;cli;console;flags;clihelper;helper</PackageTags>
+    <PackageTags>lavaleak;brunurd;cli;console;flags;clihelper;helper</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <LangVersion>7.3</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Copyright>Copyright (c) 2020 Bruno Araujo - Copyright (c) 2020 Lava Leak</Copyright>
-    <PackageProjectUrl>https://github.com/lavaleak/CliHelper</PackageProjectUrl>
+    <Copyright>Copyright (c) 2020 Bruno Araujo</Copyright>
+    <PackageProjectUrl>https://github.com/brunurd/CliHelper</PackageProjectUrl>
     <PackageLicense>LICENSE</PackageLicense>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <RepositoryUrl>https://github.com/lavaleak/CliHelper</RepositoryUrl>
+    <RepositoryUrl>https://github.com/brunurd/CliHelper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>First release.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

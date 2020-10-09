@@ -1,4 +1,4 @@
-namespace LavaLeak.CliHelper
+namespace CliHelper
 {
     public enum ParameterType
     {

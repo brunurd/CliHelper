@@ -1,6 +1,6 @@
 using System;
 
-namespace LavaLeak.CliHelper
+namespace CliHelper
 {
     public static class ErrorHandler
     {

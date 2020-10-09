@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>LavaLeak.CliHelper.Tests</RootNamespace>
+    <RootNamespace>CliHelper.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

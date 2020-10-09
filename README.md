@@ -15,7 +15,7 @@ A C# library to help build console applications (command line interface).
 
 ```C#
 using System;
-using LavaLeak.CliHelper;
+using CliHelper;
 
 namespace PrintApp
 {
@@ -61,13 +61,13 @@ After build, do something like:
 
 [nuget]: https://www.nuget.org/packages/CliHelper
 
-[releases]: https://github.com/lavaleak/CliHelper/releases
+[releases]: https://github.com/brunurd/CliHelper/releases
 [changelog]: CHANGELOG.md
 [license]: LICENSE
 
 [nuget-badge]: https://img.shields.io/nuget/v/CliHelper
-[license-badge]: https://img.shields.io/github/license/lavaleak/CliHelper
-[tag-badge]: https://img.shields.io/github/v/tag/lavaleak/CliHelper?sort=semver
+[license-badge]: https://img.shields.io/github/license/brunurd/CliHelper
+[tag-badge]: https://img.shields.io/github/v/tag/brunurd/CliHelper?sort=semver
 [cs-ver-badge]: https://img.shields.io/badge/C%23-7.3-621ee5
 [framework-ver-badge]: https://img.shields.io/badge/framework-netstandard2.0-621ee5
 [net-ver-badge]: https://img.shields.io/badge/.NET_Framework-4.6.1-621ee5

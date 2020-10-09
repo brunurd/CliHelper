@@ -1,6 +1,6 @@
 using System;
 
-namespace LavaLeak.CliHelper
+namespace CliHelper
 {
     public class ApplicationRootFlag
     {

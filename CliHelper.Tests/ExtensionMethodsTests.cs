@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace LavaLeak.CliHelper.Tests
+namespace CliHelper.Tests
 {
     public class ExtensionMethodsTests
     {
