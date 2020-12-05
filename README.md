@@ -30,6 +30,8 @@ namespace PrintApp
 
             runCommand.RegisterParameter("message", "Write  message.", 'm');
             runCommand.RegisterFlag("error", "Print in red.", 'e');
+
+            app.Run(args);
         }
 
         private static void Run(ParameterWithValues[] parameters, Flag[] flags)
