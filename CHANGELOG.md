@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## In development 
+
+### Added
+- ParameterWithValues.GetValue to turn easy to get values.
+
+---
+
 ## [0.0.2] - 2020-10-09
 ### Changed
 - Repository url changed to: https://github.com/brunurd/CliHelper
