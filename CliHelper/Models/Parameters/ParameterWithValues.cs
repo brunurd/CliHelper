@@ -20,7 +20,7 @@ namespace CliHelper.Models.Parameters
         /// </summary>
         /// <param name="parameter">The base parameter.</param>
         /// <param name="values">The current values.</param>
-        internal ParameterWithValues(Parameter parameter, object[] values)
+        public ParameterWithValues(Parameter parameter, object[] values)
         {
             Parameter = parameter;
             Values = values;
@@ -52,7 +52,7 @@ namespace CliHelper.Models.Parameters
                 return null;
             }
 
-            return Values.Length >= index ? null : Values[index];
+            return Values.Length <= index ? null : Values[index];
         }
     }
 }

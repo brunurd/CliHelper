@@ -37,6 +37,12 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+    <None Include="..\1.0.0-RELEASE-ROADMAP.md">
+      <Link>1.0.0-RELEASE-ROADMAP.md</Link>
+    </None>
+    <None Include="..\CHANGELOG.md">
+      <Link>CHANGELOG.md</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
