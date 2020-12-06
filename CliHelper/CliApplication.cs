@@ -1,9 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-
-namespace CliHelper
+﻿namespace CliHelper
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+    using CliHelper.Models;
+    using CliHelper.Models.Flags;
+    using CliHelper.Models.Parameters;
+
+    /// <summary>
+    /// The command line application.
+    /// </summary>
     public class CliApplication
     {
         private const string REGEX_NAME = @"( |^)--(\w+)";
@@ -12,10 +18,26 @@ namespace CliHelper
         private Dictionary<string, Command> _commands;
         private Dictionary<ArgumentKey, ApplicationRootFlag> _flags;
 
+        /// <summary>
+        /// Gets the current application instance.
+        /// </summary>
         public static CliApplication Current { get; private set; }
+
+        /// <summary>
+        /// Gets the application name.
+        /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets the application options <seealso cref="Options"/>.
+        /// </summary>
         public CliOptions Options { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CliApplication"/> class.
+        /// </summary>
+        /// <param name="name">The name of the application.</param>
+        /// <param name="options">Optional settings for the application.</param>
         public CliApplication(string name, CliOptions options = null)
         {
             Name = name;
@@ -23,7 +45,7 @@ namespace CliHelper
             _commands = new Dictionary<string, Command>();
             _flags = new Dictionary<ArgumentKey, ApplicationRootFlag>();
 
-            if (Options.addHelp)
+            if (Options.AddHelp)
             {
                 RegisterRootFlag("help", "Show application commands list.", () => Help(), 'h');
             }
@@ -37,7 +59,7 @@ namespace CliHelper
         /// <param name="name">The name to be used to call the command.</param>
         /// <param name="description">Add a description to the command.</param>
         /// <param name="callback">This is the execution of the command with all parameters and flags.</param>
-        /// <returns></returns>
+        /// <returns>The command instance.</returns>
         public Command RegisterCommand(string name, string description, Action<ParameterWithValues[], Flag[]> callback)
         {
             var command = new Command(name, description, callback);
@@ -45,6 +67,13 @@ namespace CliHelper
             return command;
         }
 
+        /// <summary>
+        /// Register of a root flag (a flag without command).
+        /// </summary>
+        /// <param name="name">The name of the root flag.</param>
+        /// <param name="description">The root flag description.</param>
+        /// <param name="callback">The root flag callback.</param>
+        /// <param name="shortcut">The root flag character shortcut.</param>
         public void RegisterRootFlag(string name, string description, Action callback, char shortcut = default)
         {
             var key = new ArgumentKey(name, shortcut);
@@ -64,6 +93,7 @@ namespace CliHelper
         /// <summary>
         /// Show all commands usage instructions.
         /// </summary>
+        /// <param name="commandName">A command to show it current help.</param>
         public void Help(string commandName = null)
         {
             if (commandName == null)
@@ -83,7 +113,7 @@ namespace CliHelper
         /// <summary>
         /// Execute the application passing the console args.
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">The command line arguments.</param>
         /// <exception cref="Exception">Throws a exception if don't have any argument.</exception>
         public void Run(string[] args)
         {

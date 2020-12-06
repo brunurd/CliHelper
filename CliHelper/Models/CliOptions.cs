@@ -1,19 +1,24 @@
-namespace CliHelper
+namespace CliHelper.Models
 {
+    /// <summary>
+    /// A options object to use in the <see cref="CliApplication"/>.
+    /// </summary>
     public class CliOptions
     {
         /// <summary>
-        /// Show the stack trace if throws exception.
+        /// Gets a value indicating whether show the stack trace on throws a exception.
         /// If false console write the exception message only.
         /// </summary>
-        public readonly bool showStackTraceOnError;
-        
-        /// <summary>
-        /// Add the --help command.
-        /// </summary>
-        public readonly bool addHelp;
+        internal bool ShowStackTraceOnError { get; }
 
         /// <summary>
+        /// Gets a value indicating whether it contains the default --help command.
+        /// </summary>
+        ///
+        internal bool AddHelp { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CliOptions"/> class.
         /// The CLI Application options.
         /// </summary>
         /// <param name="showStackTraceOnError">
@@ -23,8 +28,8 @@ namespace CliHelper
         /// <param name="addHelp">Add the --help command.</param>
         public CliOptions(bool showStackTraceOnError = false, bool addHelp = true)
         {
-            this.showStackTraceOnError = showStackTraceOnError;
-            this.addHelp = addHelp;
+            ShowStackTraceOnError = showStackTraceOnError;
+            AddHelp = addHelp;
         }
     }
 }

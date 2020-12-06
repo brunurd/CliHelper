@@ -1,18 +1,28 @@
-using NUnit.Framework;
-
 namespace CliHelper.Tests
 {
+    using CliHelper.Models.Parameters;
+    using NUnit.Framework;
+
+    /// <summary>
+    /// Tests of the class <see cref="CliApplication"/>.
+    /// </summary>
     [TestFixture]
     public class CliApplicationTests
     {
         private bool _callbackCalled;
 
+        /// <summary>
+        /// CliApplication tests setup.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             _callbackCalled = false;
         }
 
+        /// <summary>
+        /// CliApplication tests tear down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
@@ -20,6 +30,9 @@ namespace CliHelper.Tests
             _callbackCalled = false;
         }
 
+        /// <summary>
+        /// A test of the CliApplication.RegisterCommand method.
+        /// </summary>
         [Test]
         public void RegisterCommandTest()
         {

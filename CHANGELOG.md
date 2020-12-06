@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## In development 
 
 ### Added
+- StyleCop.
 - ParameterWithValues.GetValue to turn easy to get values.
 
 ---

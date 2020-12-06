@@ -1,10 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace CliHelper
+namespace CliHelper.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using CliHelper.Models.Flags;
+    using CliHelper.Models.Parameters;
+
+    /// <summary>
+    /// A cli application command representation.
+    /// </summary>
     public class Command
     {
         private const string REGEX_NAME = @"( |^)--(\w+)";
@@ -14,9 +19,22 @@ namespace CliHelper
         private Dictionary<ArgumentKey, Parameter> _parameters;
         private Dictionary<ArgumentKey, Flag> _flags;
 
+        /// <summary>
+        /// Gets the command name.
+        /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets the command description.
+        /// </summary>
         public string Description { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Command"/> class.
+        /// </summary>
+        /// <param name="name">The command name.</param>
+        /// <param name="description">The command description.</param>
+        /// <param name="callback">The command callback.</param>
         internal Command(string name, string description, Action<ParameterWithValues[], Flag[]> callback)
         {
             Name = name;
@@ -31,14 +49,13 @@ namespace CliHelper
         /// </summary>
         /// <param name="name">A unique parameter name.
         /// warning: don't put hyphen at the begin.</param>
-        /// <param name="description"></param>
+        /// <param name="description">The command description.</param>
         /// <param name="shortcut">A unique shortcut char.
         /// warning: don't put hyphen at the begin.</param>
         /// <param name="parametersLength">The length of values to put after the parameter.</param>
         /// <param name="type">The values type.</param>
         /// <exception cref="Exception">Throws a exception the name or shortcut is already registered.</exception>
-        public void RegisterParameter(string name, string description, char shortcut = default, int parametersLength = 1,
-            ParameterType type = ParameterType.String)
+        public void RegisterParameter(string name, string description, char shortcut = default, int parametersLength = 1, ParameterType type = ParameterType.String)
         {
             var key = new ArgumentKey(name, shortcut);
 
@@ -59,7 +76,7 @@ namespace CliHelper
         /// </summary>
         /// <param name="name">A unique flag name.
         /// warning: don't put hyphen at the begin.</param>
-        /// <param name="description"></param>
+        /// <param name="description">The flag description.</param>
         /// <param name="shortcut">A unique shortcut char.
         /// warning: don't put hyphen at the begin.</param>
         /// <exception cref="Exception">Throws a exception the name or shortcut is already registered.</exception>
@@ -79,6 +96,28 @@ namespace CliHelper
             _flags.Add(key, new Flag(name, description, shortcut));
         }
 
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+
+            foreach (var parameter in _parameters)
+            {
+                builder.AppendLine(parameter.ToString());
+            }
+
+            foreach (var flag in _flags)
+            {
+                builder.AppendLine(flag.ToString());
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Execute it command if it is called.
+        /// </summary>
+        /// <param name="args">The command line arguments.</param>
         internal void Run(string[] args)
         {
             var parameters = HandleParameters(args);
@@ -183,24 +222,6 @@ namespace CliHelper
             }
 
             return flags.ToArray();
-        }
-
-        public override string ToString()
-        {
-            var builder = new StringBuilder();
-            
-            foreach (var parameter in _parameters)
-            {
-                builder.AppendLine(parameter.ToString());
-            }
-
-
-            foreach (var flag in _flags)
-            {
-                builder.AppendLine(flag.ToString());
-            }
-
-            return builder.ToString();
         }
     }
 }

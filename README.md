@@ -14,11 +14,11 @@ A C# library to help build console applications (command line interface).
 ## Usage Example
 
 ```C#
-using System;
-using CliHelper;
-
 namespace PrintApp
 {
+    using System;
+    using CliHelper;
+
     public static class PrintAppMain
     {
         public static void Main(params string[] args)
