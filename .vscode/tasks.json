@@ -1,38 +1,73 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "restore",
-      "type": "shell",
-      "command": "dotnet",
-      "args": [
-        "restore"
-      ]
-    },
-    {
-      "label": "test",
-      "type": "shell",
-      "command": "dotnet",
-      "args": [
-        "test"
-      ]
-    },
-    {
-      "label": "build",
-      "type": "shell",
-      "command": "dotnet",
-      "args": [
-        "build"
-      ],
-      "problemMatcher": [
-        "$msCompile"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    }
-  ],
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/CliHelper.Tests/CliHelper.Tests.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/CliHelper.Tests/CliHelper.Tests.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/CliHelper.Tests/CliHelper.Tests.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "restore",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "restore"
+            ]
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "test"
+            ]
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
 }

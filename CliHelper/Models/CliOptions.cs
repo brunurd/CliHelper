@@ -18,16 +18,23 @@ namespace CliHelper.Models
         internal bool AddHelp { get; }
 
         /// <summary>
+        /// Gets the application assembly name set on the application creation.
+        /// </summary>
+        internal string AssemblyName { get; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CliOptions"/> class.
         /// The CLI Application options.
         /// </summary>
+        /// <param name="assemblyName">The application assembly name to show in help.</param>
         /// <param name="showStackTraceOnError">
         /// Show the stack trace if throws exception.
         /// If false console write the exception message only.
         /// </param>
         /// <param name="addHelp">Add the --help command.</param>
-        public CliOptions(bool showStackTraceOnError = false, bool addHelp = true)
+        public CliOptions(string assemblyName, bool showStackTraceOnError = false, bool addHelp = true)
         {
+            AssemblyName = assemblyName;
             ShowStackTraceOnError = showStackTraceOnError;
             AddHelp = addHelp;
         }

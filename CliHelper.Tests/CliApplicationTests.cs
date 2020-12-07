@@ -1,5 +1,6 @@
 namespace CliHelper.Tests
 {
+    using CliHelper.Models;
     using CliHelper.Models.Parameters;
     using NUnit.Framework;
 
@@ -65,6 +66,41 @@ namespace CliHelper.Tests
                 "-f",
                 "-c",
             });
+        }
+
+        /// <summary>
+        /// A test of the CliApplication.Help to checks if it show the correct output.
+        /// </summary>
+        [Test]
+        public void HelpTest()
+        {
+            var app = new CliApplication("Test App", new CliOptions(assemblyName: "test"));
+            var opCmd = app.RegisterCommand("op", "A mathematical operation.", null);
+            opCmd.RegisterParameter("sum", "Sum two numbers.", 's', 2, ParameterType.Number);
+            opCmd.RegisterFlag("floor", "Return the greatest integer less or equal the result.", 'f');
+            opCmd.RegisterFlag("ceil", "Return the greatest integer greater or equal the result.", 'c');
+
+            const string commandsHelp = @"Test App
+
+Usage: test <command> [options]
+
+Commands:
+help | how application commands list.
+op   | A mathematical operation.
+";
+
+            const string opHelp = @"Test App
+
+Usage: test op [options]
+
+Parameters:
+--sum, -s   | Sum two numbers.
+--floor, -f | Return the greatest integer less or equal the result.
+--ceil, -c  | Return the greatest integer greater or equal the result.
+";
+
+            Assert.AreEqual(commandsHelp, app.Help());
+            Assert.AreEqual(opHelp, app.Help("op"));
         }
     }
 }

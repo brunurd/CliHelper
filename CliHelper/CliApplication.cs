@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Text.RegularExpressions;
     using CliHelper.Models;
     using CliHelper.Models.Flags;
@@ -41,13 +42,17 @@
         public CliApplication(string name, CliOptions options = null)
         {
             Name = name;
-            Options = options ?? new CliOptions();
+            Options = options ?? new CliOptions(name);
             _commands = new Dictionary<string, Command>();
             _flags = new Dictionary<ArgumentKey, ApplicationRootFlag>();
 
             if (Options.AddHelp)
             {
-                RegisterRootFlag("help", "Show application commands list.", () => Help(), 'h');
+                RegisterRootFlag(
+                    "help",
+                    "Show application commands list.",
+                    () => Console.WriteLine(Help()),
+                    'h');
             }
 
             Current = this;
@@ -94,20 +99,57 @@
         /// Show all commands usage instructions.
         /// </summary>
         /// <param name="commandName">A command to show it current help.</param>
-        public void Help(string commandName = null)
+        /// <returns>Return the output text.</returns>
+        public string Help(string commandName = null)
         {
-            if (commandName == null)
+            StringBuilder helpOutput = new StringBuilder();
+
+            helpOutput.AppendLine($"{Name}\n");
+            var keySize = 0;
+
+            if (_commands.ContainsKey(commandName))
             {
-                foreach (var command in _commands)
+                helpOutput.AppendLine($"Usage: {Options.AssemblyName} {commandName} [options]\n");
+                helpOutput.AppendLine($"Parameters:");
+
+                var cmd = _commands[commandName];
+                helpOutput.AppendLine(cmd.Help());
+
+                return helpOutput.ToString();
+            }
+
+            helpOutput.AppendLine($"Usage: {Options.AssemblyName} <command> [options]\n");
+            helpOutput.AppendLine($"Commands:");
+
+            // TODO: Get the max key length.
+            foreach (var key in _commands.Keys)
+            {
+                if (key.Length > keySize)
                 {
-                    // TODO: Briefly commands help.
-                    Console.WriteLine(command);
+                    keySize = key.Length;
                 }
             }
-            else
+
+            keySize += 1;
+
+            // TODO: Add root flags.
+
+            // TODO: Use a method for this.
+            foreach (var command in _commands)
             {
-                // TODO: Command specific help.
+                var key = new char[keySize];
+
+                for (int i = 0; i < command.Key.Length; i++)
+                {
+                    key[i] = command.Key[i];
+                }
+
+                var keyStr = new string(key).Replace('\0', ' ');
+
+                helpOutput.AppendLine($"{keyStr}| {command.Value.Description}");
             }
+
+            return helpOutput.ToString();
         }
 
         /// <summary>

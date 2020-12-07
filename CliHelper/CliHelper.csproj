@@ -29,9 +29,6 @@
   <ItemGroup>
     <None Include="..\LICENSE" Pack="true" PackagePath="" />
     <None Include="..\README.md" Pack="true" PackagePath="" />
-    <Content Include="..\.gitignore" CopyToOutputDirectory="Never">
-      <Link>.gitignore</Link>
-    </Content>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

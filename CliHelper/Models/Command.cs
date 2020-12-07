@@ -45,7 +45,7 @@ namespace CliHelper.Models
         }
 
         /// <summary>
-        /// Register of a command parameter, something like: command --param value1 value2 
+        /// Register of a command parameter, something like: command --param value1 value2.
         /// </summary>
         /// <param name="name">A unique parameter name.
         /// warning: don't put hyphen at the begin.</param>
@@ -72,7 +72,7 @@ namespace CliHelper.Models
         }
 
         /// <summary>
-        /// Register of a command flag to be on or off, something like: command --flag 
+        /// Register of a command flag to be on or off, something like: command --flag.
         /// </summary>
         /// <param name="name">A unique flag name.
         /// warning: don't put hyphen at the begin.</param>
@@ -131,6 +131,16 @@ namespace CliHelper.Models
             {
                 ErrorHandler.Log(error);
             }
+        }
+
+        /// <summary>
+        /// Return a help output of the command.
+        /// </summary>
+        /// <returns>A formatted output help text.</returns>
+        internal string Help()
+        {
+            // TODO: Create the command help output.
+            return null;
         }
 
         private ParameterWithValues[] HandleParameters(string[] args)
