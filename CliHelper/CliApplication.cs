@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Text.RegularExpressions;
+    using CliHelper.Commands;
     using CliHelper.Models;
     using CliHelper.Models.Flags;
     using CliHelper.Models.Parameters;
@@ -16,8 +17,8 @@
         private const string REGEX_NAME = @"( |^)--(\w+)";
         private const string REGEX_SHORTCUT = @"( |^)-(\w+)";
 
-        private Dictionary<string, Command> _commands;
-        private Dictionary<ArgumentKey, ApplicationRootFlag> _flags;
+        private readonly Dictionary<string, Command> _commands;
+        private readonly Dictionary<ArgumentKey, ApplicationRootFlag> _flags;
 
         /// <summary>
         /// Gets the current application instance.
@@ -48,11 +49,7 @@
 
             if (Options.AddHelp)
             {
-                RegisterRootFlag(
-                    "help",
-                    "Show application commands list.",
-                    () => Console.WriteLine(Help()),
-                    'h');
+                new HelpCommand(this);
             }
 
             Current = this;
@@ -110,7 +107,7 @@
             if (_commands.ContainsKey(commandName))
             {
                 helpOutput.AppendLine($"Usage: {Options.AssemblyName} {commandName} [options]\n");
-                helpOutput.AppendLine($"Parameters:");
+                helpOutput.AppendLine("Parameters:");
 
                 var cmd = _commands[commandName];
                 helpOutput.AppendLine(cmd.Help());
@@ -119,7 +116,7 @@
             }
 
             helpOutput.AppendLine($"Usage: {Options.AssemblyName} <command> [options]\n");
-            helpOutput.AppendLine($"Commands:");
+            helpOutput.AppendLine("Commands:");
 
             // TODO: Get the max key length.
             foreach (var key in _commands.Keys)
@@ -130,7 +127,7 @@
                 }
             }
 
-            keySize += 1;
+            keySize++;
 
             // TODO: Add root flags.
 
